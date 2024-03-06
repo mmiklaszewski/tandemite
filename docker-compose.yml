@@ -9,6 +9,7 @@ services:
       - "3030:80"
     volumes:
       - .:/var/www/html
+    command: sh -c "/bin/bash /var/www/html/docker/start.sh && apache2-foreground"
   db:
     container_name: tandemite_db
     image: mysql:8.0
