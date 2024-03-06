@@ -3,6 +3,7 @@
 namespace App\Application\Command\SaveFormData;
 
 use App\Domain\Event\FormDataWasSaved;
+use App\Domain\ValueObject\AttachmentData;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -40,11 +41,11 @@ final readonly class SaveFormDataHandler
                 $command->name,
                 $command->surname,
                 $filePath,
-                [
-                    'originalName' => $command->attachment->getClientOriginalName(),
-                    'extension' => $command->attachment->getClientOriginalExtension(),
-                    'mimeType' => $command->attachment->getClientMimeType(),
-                ]
+                new AttachmentData(
+                    $command->attachment->getClientOriginalName(),
+                    $command->attachment->getClientOriginalExtension(),
+                    $command->attachment->getClientMimeType(),
+                )
             )
         );
     }

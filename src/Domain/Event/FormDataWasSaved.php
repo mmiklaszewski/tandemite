@@ -2,6 +2,7 @@
 
 namespace App\Domain\Event;
 
+use App\Domain\ValueObject\AttachmentData;
 use Symfony\Component\Uid\Uuid;
 
 final readonly class FormDataWasSaved
@@ -11,7 +12,7 @@ final readonly class FormDataWasSaved
         public string $name,
         public string $surname,
         public string $attachmentPath,
-        public array $attachmentData
+        public AttachmentData $attachmentData
     ) {
     }
 }

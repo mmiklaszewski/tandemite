@@ -1,6 +1,47 @@
 {% extends 'base.html.twig' %}
 
+{% macro generatePaginator(total, page, limit) %}
+    {% set totalPages = (total / limit)|round(0, 'ceil') %}
+
+    <nav>
+        <ul class="pagination">
+            {% if totalPages > 1 %}
+                {% for p in 1..totalPages %}
+                    <li class="{{ p == page ? 'active' }}">
+                        <a href="{{ path('list', {page: p}) }}">{{ p }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </nav>
+{% endmacro %}
+
 {% block body %}
     <a href="{{ path('index') }}">Return</a> <br />
-    LIST
+    <table style="border: 1px solid black">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Surname</td>
+                <td>Image attachment path</td>
+                <td>Image attachment name</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for formData in data %}
+            <tr>
+                <td>{{ formData.name }}</td>
+                <td>{{ formData.surname }}</td>
+                <td>{{ formData.attachmentPath }}</td>
+                <td>{{ formData.attachmentData.originalName }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Total elements: {{ total }}</p>
+
+    {{ _self.generatePaginator(total, page, limit) }}
+
 {% endblock %}

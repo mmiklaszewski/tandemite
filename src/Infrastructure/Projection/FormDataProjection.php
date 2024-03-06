@@ -21,7 +21,7 @@ final readonly class FormDataProjection
         $entity->setName($event->name);
         $entity->setSurname($event->surname);
         $entity->setAttachmentPath($event->attachmentPath);
-        $entity->setAttachmentData($event->attachmentData);
+        $entity->setAttachmentData($event->attachmentData->jsonSerialize());
 
         $this->formDataRepository->save($entity);
     }
