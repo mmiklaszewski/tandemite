@@ -14,8 +14,8 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: admin
-      MYSQL_USER: admin
+      MYSQL_DATABASE: app
+      MYSQL_USER: user
       MYSQL_PASSWORD: pass
     networks:
       - app

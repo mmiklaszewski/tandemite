@@ -22,3 +22,7 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+
+!/data/form_data/.gitkeep
+/data/form_data/*

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/form.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('index') }}">Return</a> <br/>
+
+
+    <form id="save-form" action="{{ path('save-form') }}" method="POST">
+        <input type="text" id="name" name="name">
+        <br/>
+        <input type="text" id="surname" name="surname">
+        <br>
+        <input type="file" id="attachment" name="attachment"
+{#               accept="image/*" #}
+        />
+        <br>
+        <button type="submit">Save</button>
+
+        <div id="message"></div>
+    </form>
+{% endblock %}
