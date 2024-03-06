@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  app:
+    container_name: tandemite
+    build: .
+    networks:
+      - app
+    ports:
+      - "3030:80"
+    volumes:
+      - .:/var/www/html
+  db:
+    container_name: tandemite_db
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: admin
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: pass
+    networks:
+      - app
+    ports:
+      - "3031:3306"
+    volumes:
+      - db:/var/lib/mysql
+  phpmyadmin:
+    container_name: tandemite_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    networks:
+      - app
+    ports:
+      - '3032:80'
+    environment:
+      PMA_HOSTS: db
+      MYSQL_ROOT_PASSWORD: pass
+    links:
+      - db
+networks:
+  app:
+
+volumes:
+  db:
+    driver: local
