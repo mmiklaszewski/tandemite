@@ -11,8 +11,7 @@ final class SavedDataView implements \JsonSerializable
         private int $page,
         private int $total,
         private SavedFormDataCollection $savedFormDataCollection
-    )
-    {
+    ) {
     }
 
     public function jsonSerialize(): array
@@ -22,6 +21,6 @@ final class SavedDataView implements \JsonSerializable
             'page' => $this->page,
             'total' => $this->total,
             'data' => $this->savedFormDataCollection->jsonSerialize(),
-        ];;
+        ];
     }
 }

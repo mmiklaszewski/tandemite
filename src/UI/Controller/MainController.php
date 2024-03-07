@@ -23,7 +23,7 @@ final class MainController extends AbstractController
     }
 
     #[Route('/list/{page}', name: 'list')]
-    public function list(QueryBus $queryBus, int $page = 1, ): Response
+    public function list(QueryBus $queryBus, int $page = 1): Response
     {
         $collection = $queryBus->handle(
             new GetSavedFormDataQuery(
@@ -31,7 +31,6 @@ final class MainController extends AbstractController
                 $page,
             )
         );
-
 
         return $this->render('list.html.twig', $collection->jsonSerialize());
     }
