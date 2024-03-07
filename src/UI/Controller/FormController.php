@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class FormController extends AbstractController
 {
-    #[Route('/save-form', name: 'save-form')]
+    #[Route('/save-form', name: 'save-form', methods: ['POST'])]
     public function saveForm(
         Request $request,
         ValidatorInterface $validator,
